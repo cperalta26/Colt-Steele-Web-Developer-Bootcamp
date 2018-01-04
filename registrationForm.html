@@ -5,8 +5,45 @@
   </head>
   <body>
     <div>
-      <h1></h1>
-      <form></form>
+      <h1>Register</h1>
+      <form action="api/users/registration" method="post">
+        <div class="usersLegalName">
+          <label>
+            First Name:
+            <input type="text" placeholder="John">
+          </label>
+          <label>
+            Last Name:
+            <input type="text" placeholder="Smith">
+          </label>
+        </div>
+
+        <div class="gender">
+          <label>
+            Male
+            <input type="radio" name="gender">
+          </label>
+          <label>
+            Female
+            <input type="radio" name="gender">
+          </label>
+          <label>
+            Other
+            <input type="radio" name="gender">
+          </label>
+        </div>
+
+        <div class="credentials">
+          <label>
+            Email
+            <input type="email" name="email">
+          </label>
+          <label>
+            Password
+            <input type="password" name="password">
+          </label>
+        </div>
+      </form>
     </div>
   </body>
 </html>
