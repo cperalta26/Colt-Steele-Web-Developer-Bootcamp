@@ -12,10 +12,12 @@ table td {
   height: 8em;
 }
 
+/* horizontal line of tic tac toe */
 .bottom {
   border-bottom: 1px solid black;
 }
 
+/* vertical line of tic tac toe */
 .right {
   border-right: 1px solid black;
 }
