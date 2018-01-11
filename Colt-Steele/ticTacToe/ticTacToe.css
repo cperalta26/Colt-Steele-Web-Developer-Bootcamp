@@ -13,11 +13,11 @@ table td {
 }
 
 /* horizontal line of tic tac toe */
-.bottom {
+.horizontal {
   border-bottom: 1px solid black;
 }
 
 /* vertical line of tic tac toe */
-.right {
+.vertical {
   border-right: 1px solid black;
 }
