@@ -1,0 +1,21 @@
+h1 {
+  text-align: center;
+}
+
+table {
+ margin: auto;
+ border-collapse: collapse;
+}
+
+table td {
+  width: 8em;
+  height: 8em;
+}
+
+.bottom {
+  border-bottom: 1px solid black;
+}
+
+.right {
+  border-right: 1px solid black;
+}
