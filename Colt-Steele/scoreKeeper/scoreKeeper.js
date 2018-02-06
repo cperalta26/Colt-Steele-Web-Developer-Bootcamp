@@ -14,6 +14,7 @@ p1Button.addEventListener("click", ()=>{
     p1Score++
     if (p1Score === winningScore) {
       gameOver = true
+      p1Display.classList.add('winner')
     }
     p1Display.innerText = p1Score
   }
@@ -24,6 +25,7 @@ p2Button.addEventListener("click", ()=>{
     p2Score++
     if (p2Score === winningScore) {
       gameOver = true
+      p2Display.classList.add('winner')
     }
     p2Display.textContent = p2Score
   }
