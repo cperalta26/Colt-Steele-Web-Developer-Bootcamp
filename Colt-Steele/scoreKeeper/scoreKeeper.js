@@ -7,7 +7,7 @@ const p2Display = document.getElementById("p2Display")
 let p2Score = 0
 
 let gameOver = false
-let winningScore = 5
+let winningScore = 6
 const winningScoreDisplay = document.querySelector("p span")
 const numInput = document.querySelector("input[type='number']")
 
@@ -36,6 +36,10 @@ p2Button.addEventListener("click", ()=>{
 })
 
 resetButton.addEventListener("click", ()=>{
+  reset()
+})
+
+function reset(){
   p1Score = 0
   p1Display.textContent = 0
   p1Display.classList.remove('winner')
@@ -45,9 +49,10 @@ resetButton.addEventListener("click", ()=>{
   p2Display.classList.remove('winner')
 
   gameOver = false
-})
+}
 
 numInput.addEventListener("change", ()=>{
   winningScoreDisplay.textContent = numInput.value
   winningScore = +numInput.value
+  reset()
 })
