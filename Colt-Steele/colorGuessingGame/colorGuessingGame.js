@@ -42,13 +42,11 @@ function pickColor () {
 
 function generateRandomColors(num) {
   let arr = []
-
   //repeat num times
   for (var i = 0; i < num; i++) {
     //get random color and push into array
     arr.push(randomColor())
   }
-
   //return that array
   return arr
 }
@@ -56,12 +54,9 @@ function generateRandomColors(num) {
 function randomColor() {
   //pick a "red" from 0 - 255
   const r = Math.floor(Math.random() * 256)
-
   //pick a "green" from 0 - 255
   const g = Math.floor(Math.random() * 256)
-
   //pick a "blue" from 0 - 255
   const b = Math.floor(Math.random() * 256)
-
   return `rgb(${r}, ${g}, ${b})`
 }
