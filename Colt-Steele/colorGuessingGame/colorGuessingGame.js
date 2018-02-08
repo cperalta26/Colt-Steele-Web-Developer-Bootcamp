@@ -4,6 +4,7 @@ const squares = document.getElementsByClassName("square")
 let pickedColor = pickColor()
 let colorDisplay = document.getElementById("colorDisplay")
 const messageDisplay = document.getElementById("message")
+const h1 = document.querySelector('h1')
 
 colorDisplay.textContent = pickedColor
 
@@ -19,7 +20,8 @@ for (var i = 0; i < squares.length; i++) {
     //compare color to pickedColor
     if (clickedColor === pickedColor) {
       messageDisplay.innerText = "Correct!"
-      changeColor(clickedColor)
+      changeColors(clickedColor)
+      h1.style.backgroundColor = clickedColor
     } else {
       this.style.backgroundColor = '#232323'
       messageDisplay.innerText = "Try Again"
@@ -27,7 +29,7 @@ for (var i = 0; i < squares.length; i++) {
   })
 }
 
-function changeColor (color){
+function changeColors (color){
   //loop through all squares
   for (var j = 0; j < squares.length; j++) {
     //change each color to match given color
