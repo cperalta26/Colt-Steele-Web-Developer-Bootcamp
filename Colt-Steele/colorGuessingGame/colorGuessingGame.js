@@ -5,8 +5,23 @@ let pickedColor = pickColor()
 let colorDisplay = document.getElementById("colorDisplay")
 const messageDisplay = document.getElementById("message")
 const h1 = document.querySelector('h1')
+const resetButton  = document.querySelector('#reset')
 
 colorDisplay.textContent = pickedColor
+
+resetButton.addEventListener("click", ()=>{
+  //generate all new colors
+  colors = generateRandomColors(6)
+  //pick a new random color from color from array
+  pickedColor = pickColor()
+  //change colorDisplay to match picked color
+  colorDisplay.textContent = pickedColor
+  //change colors of squares
+  for (var i = 0; i < squares.length; i++) {
+    squares[i].style.backgroundColor = colors[i]
+  }
+  h1.style.backgroundColor = '#232323'
+})
 
 for (var i = 0; i < squares.length; i++) {
   //add initial colors to squares
@@ -21,6 +36,7 @@ for (var i = 0; i < squares.length; i++) {
     if (clickedColor === pickedColor) {
       messageDisplay.innerText = "Correct!"
       changeColors(clickedColor)
+      resetButton.textContent = "Play Again?"
       h1.style.backgroundColor = clickedColor
     } else {
       this.style.backgroundColor = '#232323'
