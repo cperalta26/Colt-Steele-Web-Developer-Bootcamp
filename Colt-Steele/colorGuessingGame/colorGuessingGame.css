@@ -61,6 +61,8 @@ button {
   letter-spacing: 1px;
   font-size: inherit;
   transition: all 0.3s;
+  -webkit-transition: all 0.6s;
+  -moz-transition: all 0.6s;
 }
 
 button:hover {
