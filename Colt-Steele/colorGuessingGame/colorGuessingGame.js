@@ -50,6 +50,8 @@ resetButton.addEventListener("click", ()=>{
     squares[i].style.backgroundColor = colors[i]
   }
   h1.style.backgroundColor = 'steelblue'
+  resetButton.textContent = "New Colors"
+  messageDisplay.textContent = ""
 })
 
 for (var i = 0; i < squares.length; i++) {
