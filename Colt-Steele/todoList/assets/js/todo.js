@@ -19,3 +19,8 @@ $("input[type='text']").keypress(function(event) {
     $('ul').append('<li><span><i class="fa fa-trash"></i></span> ' + todoText + '</li>')
   }
 })
+
+//Toggle form
+$('h1').on('click', '.fa-plus', function() {
+   $("input[type='text']").fadeToggle()
+})
