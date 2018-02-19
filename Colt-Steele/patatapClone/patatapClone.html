@@ -7,6 +7,13 @@
     <link rel="stylesheet" type="text/css" href="patatapClone.css">
     <script type="text/javascript" src="paper-full.js"></script>
     <script type="text/paperscript" canvas="canvas">
+      function onKeyDown(event) {
+        var maxPoint = new Point(view.size.width, view.size.height)
+        var randomPoint = Point.random()
+        var randomCoordinatePt = randomPoint * maxPoint
+
+        new Path.Circle(randomCoordinatePt, 10).fillColor = "orange";
+      }
     </script>
   </head>
 
