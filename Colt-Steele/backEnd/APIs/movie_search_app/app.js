@@ -7,7 +7,6 @@ app.get('/results', (req, res, next) => {
     if (!error && response.statusCode == 200) {
       const results = JSON.parse(body)
       res.send(results['Search'][0]['Title'])
-      console.log('this is the body, ' + results)
     }
   })
 })
