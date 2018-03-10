@@ -34,5 +34,5 @@ app.get('/campgrounds/new', (req, res, next) => {
 })
 
 app.listen(3000, () => {
-  console.log('The YelpCamp Server Has Started!')
+  console.log('The YelpCamp Server Has Started on Version 2!')
 })
