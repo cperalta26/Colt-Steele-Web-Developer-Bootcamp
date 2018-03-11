@@ -36,6 +36,7 @@ app.get('/', (req, res, next) => {
   res.render('landing')
 })
 
+//INDEX - show all campgrounds
 app.get('/campgrounds', (req, res, next) => {
   //Get all campground from DB
   Campground.find({}, (err, allCampgrounds) => {
@@ -47,6 +48,7 @@ app.get('/campgrounds', (req, res, next) => {
   })
 })
 
+//CREATE - add new campground to DB
 app.post('/campgrounds', (req, res, next) => {
   const name = req.body.name
   const image = req.body.image
@@ -63,6 +65,7 @@ app.post('/campgrounds', (req, res, next) => {
   })
 })
 
+//NEW - show form to create new campground
 app.get('/campgrounds/new', (req, res, next) => {
   res.render('new')
 })
