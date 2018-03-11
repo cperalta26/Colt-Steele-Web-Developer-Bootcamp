@@ -52,9 +52,15 @@ app.post('/campgrounds', (req, res, next) => {
   const image = req.body.image
   const newCampground = {name, image}
 
-  campgrounds.push(newCampground)
-
-  res.redirect('/campgrounds')
+  //Create a new campground and save it to DB
+  Campground.create(newCampground, (err, newlyCreated) => {
+    if (err) {
+      console.log('This is the error ' + err)
+    } else {
+      console.log('Campground was created ' + newlyCreated)
+      res.redirect('/campgrounds')
+    }
+  })
 })
 
 app.get('/campgrounds/new', (req, res, next) => {
