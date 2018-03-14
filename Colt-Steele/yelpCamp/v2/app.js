@@ -9,24 +9,26 @@ mongoose.connect('mongodb://localhost/yelp_camp')
 
 const campgroundSchema = new mongoose.Schema({
   name: String,
-  image: String
+  image: String,
+  description: String
 })
 
 const Campground = mongoose.model('Campground', campgroundSchema)
 
-/* Campground.create(
+Campground.create(
   {
     name: 'Granite Hill',
-    image: 'https://pixabay.com/get/e834b90621f6083ed95c4518b7444795ea76e5d004b0144395f4c77aa2ebb1_340.jpg'
-
-  }, (err, campground) => {
+    image: 'https://pixabay.com/get/e834b90621f6083ed95c4518b7444795ea76e5d004b0144395f4c77aa2ebb1_340.jpg',
+    description: 'This is a huge granite hill, no bathrooms. No water.'
+  },
+  (err, campground) => {
     if (err) {
       console.log('This is the error ' + err)
     } else {
       console.log('Newly created campground: ')
       console.log(campground)
     }
-  }) */
+  })
 
 app.use(bodyParser.urlencoded({extended: true}))
 
@@ -69,6 +71,7 @@ app.post('/campgrounds', (req, res, next) => {
 app.get('/campgrounds/new', (req, res, next) => {
   res.render('new')
 })
+
 
 app.listen(3000, () => {
   console.log('The YelpCamp Server Has Started on Version 2!')
