@@ -54,7 +54,9 @@ app.get('/campgrounds', (req, res, next) => {
 app.post('/campgrounds', (req, res, next) => {
   const name = req.body.name
   const image = req.body.image
-  const newCampground = {name, image}
+  const description = req.body.description
+  const newCampground = {name, image, description}
+
 
   //Create a new campground and save it to DB
   Campground.create(newCampground, (err, newlyCreated) => {
