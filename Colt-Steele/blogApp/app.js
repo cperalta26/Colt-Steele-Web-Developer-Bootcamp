@@ -19,6 +19,12 @@ const blogSchema = new mongoose.Schema({
 
 const Blog = mongoose.model('Blog', blogSchema)
 
+Blog.create({
+  title: 'Test Blog',
+  image: 'https://images.pexels.com/photos/879824/pexels-photo-879824.jpeg?h=350&dpr=2&auto=compress&cs=tinysrgb',
+  body: 'HELLO THIS IS A BLOG POST!!!'
+})
+
 app.listen(3000, () => {
   console.log('Listening on port 3000')
 })
