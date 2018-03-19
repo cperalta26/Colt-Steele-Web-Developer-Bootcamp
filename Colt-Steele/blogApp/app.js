@@ -19,10 +19,25 @@ const blogSchema = new mongoose.Schema({
 
 const Blog = mongoose.model('Blog', blogSchema)
 
-Blog.create({
+/* Blog.create({
   title: 'Test Blog',
   image: 'https://images.pexels.com/photos/879824/pexels-photo-879824.jpeg?h=350&dpr=2&auto=compress&cs=tinysrgb',
   body: 'HELLO THIS IS A BLOG POST!!!'
+}) */
+
+//RESTFUL ROUTES
+app.get('/', (req, res) => {
+  res.redirect('/blogs')
+})
+
+app.get('/blogs', (req, res) => {
+  Blog.find({}, (err, blogs) => {
+    if (err) {
+      console.log('This is the error ', err)
+    } else {
+      res.render('index', {blogs: blogs})
+    }
+  })
 })
 
 app.listen(3000, () => {
