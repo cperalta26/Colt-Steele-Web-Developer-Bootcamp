@@ -40,6 +40,12 @@ app.get('/blogs', (req, res) => {
   })
 })
 
+//NEW ROUTE
+app.get('/blogs/new', (req, res) => {
+  res.render('new')
+})
+
+
 app.listen(3000, () => {
   console.log('Listening on port 3000')
 })
