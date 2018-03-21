@@ -45,6 +45,19 @@ app.get('/blogs/new', (req, res) => {
   res.render('new')
 })
 
+//CREATE ROUTE
+app.post('/blogs', (req, res) => {
+  //create blog
+  Blog.create(req.body.blog, (err, newBlog) => {
+    if (err) {
+      res.render('new')
+    } else {
+      //then, redirect to the index
+      console.log('Newly created blog: ', newBlog)
+      res.redirect('/blogs')
+    }
+  })
+})
 
 app.listen(3000, () => {
   console.log('Listening on port 3000')
