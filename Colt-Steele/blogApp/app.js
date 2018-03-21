@@ -48,7 +48,8 @@ app.get('/blogs/new', (req, res) => {
 //CREATE ROUTE
 app.post('/blogs', (req, res) => {
   //create blog
-  Blog.create(req.body.blog, (err, newBlog) => {
+  const {title, image, body} = req.body
+  Blog.create({title, image, body}, (err, newBlog) => {
     if (err) {
       res.render('new')
     } else {
