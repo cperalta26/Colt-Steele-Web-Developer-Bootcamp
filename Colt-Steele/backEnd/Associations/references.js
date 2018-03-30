@@ -1,33 +1,12 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose'),
+      Post = require('./models/post'),
+      User = require('./models/user')
+
 mongoose.connect('mongodb://localhost/blog_demo_2')
 
-//defining 2 models users and posts
-
-//POST - title, content
-const postSchema = new mongoose.Schema({
-  title: String,
-  content: String
-})
-
-const Post = mongoose.model('Post', postSchema)
-
-//USER - email, name
-const userSchema = new mongoose.Schema({
-  email: String,
-  name: String,
-  posts: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Post'
-    }
-  ]
-})
-
-const User = mongoose.model('User', userSchema)
-
 /* Post.create({
-  title: 'How to cook the best burger pt.3',
-  content: 'aldjfalskjdfkasjdf;jasdf sajdlfkjaskdfjasdfasdkfjasdfjs'
+  title: 'How to cook the best burger pt.4',
+  content: 'testing alksjdlfjsldakjfskdjfiuewiueie'
 }, (err, post) => {
   if (err) {
     console.log(`error when creating a post: ${err}`)
