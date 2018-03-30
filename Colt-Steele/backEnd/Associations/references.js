@@ -25,9 +25,9 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model('User', userSchema)
 
-Post.create({
-  title: 'How to cook the best burger pt.2',
-  content: 'blah blah balsjdfklajsdfalskdfj alksdjf'
+/* Post.create({
+  title: 'How to cook the best burger pt.3',
+  content: 'aldjfalskjdfkasjdf;jasdf sajdlfkjaskdfjasdfasdkfjasdfjs'
 }, (err, post) => {
   if (err) {
     console.log(`error when creating a post: ${err}`)
@@ -47,9 +47,13 @@ Post.create({
       }
     })
   }
+}) */
+
+//Find user and all posts for that user
+User.findOne({email: 'bob@gmail.com'}).populate('posts').exec((error, user) => {
+  if (error) {
+    console.log(`error: ${error}`)
+  } else {
+    console.log(`user: ${user}`)
+  }
 })
-/* User.create({
-  email: 'bob@gmail.com',
-  name: 'Bob Belcher'
-})
- */
