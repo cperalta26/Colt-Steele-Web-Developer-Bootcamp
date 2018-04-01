@@ -8,21 +8,6 @@ const seedDB = require('./seeds')
 seedDB()
 mongoose.connect('mongodb://localhost/yelp_camp_v3')
 
-/* Campground.create(
-  {
-    name: 'Granite Hill',
-    image: 'https://pixabay.com/get/e834b90621f6083ed95c4518b7444795ea76e5d004b0144395f4c77aa2ebb1_340.jpg',
-    description: 'This is a huge granite hill, no bathrooms. No water.'
-  },
-  (err, campground) => {
-    if (err) {
-      console.log('This is the error ' + err)
-    } else {
-      console.log('Newly created campground: ')
-      console.log(campground)
-    }
-  }) */
-
 app.use(bodyParser.urlencoded({extended: true}))
 
 app.set('view engine', 'ejs')
@@ -50,7 +35,6 @@ app.post('/campgrounds', (req, res, next) => {
   const description = req.body.description
   const newCampground = {name, image, description}
 
-
   //Create a new campground and save it to DB
   Campground.create(newCampground, (err, newlyCreated) => {
     if (err) {
@@ -71,7 +55,7 @@ app.get('/campgrounds/new', (req, res, next) => {
 app.get('/campgrounds/:id', (req, res, next) => {
   //find the campground with provided ID
   const campId = req.params.id
-  Campground.findById(campId, (err, foundCampground) => {
+  Campground.findById(campId).populate('comments').exec( (err, foundCampground) => {
     if (err) {
       console.log('This is the error ' + err)
     } else {

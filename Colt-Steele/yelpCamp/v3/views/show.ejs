@@ -4,4 +4,10 @@
 <img src="<%= foundCampground.image %>">
 
 <p><%= foundCampground.description %></p>
+
+<% foundCampground.comments.forEach( comment => { %>
+  <p>
+    <strong><%= comment.author %></strong> - <%= comment.text %>
+  </p>
+<% }) %>
 <% include partials/footer %>
