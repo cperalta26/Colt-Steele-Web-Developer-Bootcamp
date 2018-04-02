@@ -6,7 +6,7 @@ const Campground = require('./models/campground')
 const seedDB = require('./seeds')
 
 seedDB()
-mongoose.connect('mongodb://localhost/yelp_camp_v4')
+mongoose.connect('mongodb://localhost/yelp_camp_v3')
 
 app.use(bodyParser.urlencoded({extended: true}))
 
