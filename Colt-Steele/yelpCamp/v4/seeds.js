@@ -34,7 +34,7 @@ const seedDB = () => {
           if (err) {
             console.log(`error: ${err}`)
           } else {
-            console.log(`added the following campground: ${newCampground}`)
+            // console.log(`added the following campground: ${newCampground}`)
             //create a comment
             Comment.create(
               {

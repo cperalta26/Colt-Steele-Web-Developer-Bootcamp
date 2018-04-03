@@ -23,7 +23,7 @@ app.get('/campgrounds', (req, res, next) => {
     if (err) {
       console.log('This is the error ' + err)
     } else {
-      res.render('index', {allCampgrounds})
+      res.render('campgrounds/index', {allCampgrounds})
     }
   })
 })
@@ -48,7 +48,7 @@ app.post('/campgrounds', (req, res, next) => {
 
 //NEW - show form to create new campground
 app.get('/campgrounds/new', (req, res, next) => {
-  res.render('new')
+  res.render('campgrounds/new')
 })
 
 //SHOW - shows more info about one campground
@@ -60,11 +60,25 @@ app.get('/campgrounds/:id', (req, res, next) => {
       console.log('This is the error ' + err)
     } else {
       //render show template with that campground
-      res.render('show', {foundCampground})
+      res.render('campgrounds/show', {foundCampground})
+    }
+  })
+})
+
+// ===========================
+// COMMENTS
+// ===========================
+app.get('/campgrounds/:id/comments/new', (req, res) => {
+  //find campground by id
+  Campground.findById(req.params.id, (err, campground) => {
+    if (err) {
+      console.log(`error: ${err}`)
+    } else {
+      res.render('comments/new', {campground})
     }
   })
 })
 
 app.listen(3000, () => {
-  console.log('The YelpCamp Server Has Started on Version 2!')
+  console.log('The YelpCamp Server Has Started on Version 4!')
 })
