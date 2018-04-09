@@ -9,6 +9,10 @@ app.get('/', (req, res) => {
   res.render('home')
 })
 
+app.get('/secret', (req, res) => {
+  res.render('secret')
+})
+
 app.listen(3000, () => {
   console.log('Now listening on port 3000!!!')
 })
