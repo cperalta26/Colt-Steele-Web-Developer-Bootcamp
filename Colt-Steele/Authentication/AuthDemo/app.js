@@ -8,7 +8,18 @@ const passportLocalMongoose = require('passport-local-mongoose')
 const User = require('./models/user')
 
 mongoose.connect('mongodb://localhost/auth_demo_app')
+
 app.set('view engine', 'ejs')
+app.use(passport.initialize())
+app.use(passport.session())
+app.use(require('express-session')({
+  secret: "You can't see me...I'm a flower",
+  resave: false,
+  saveUninitialized: false
+}))
+
+passport.serializeUser(User.serializeUser())
+passport.deserializeUser(User.deserializeUser())
 
 app.get('/', (req, res) => {
   res.render('home')
