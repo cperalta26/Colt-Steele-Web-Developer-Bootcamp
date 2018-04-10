@@ -39,6 +39,19 @@ app.get('/register', (req, res) => {
   res.render('register')
 })
 
+/* handling user sign up */
+app.post('/register', (req, res) => {
+  User.register(new User({username: req.body.username}), req.body.password, (err, newUser) => {
+    if (err) {
+      console.log(`error: ${err}`)
+      return res.render('register')
+    }
+    passport.authenticate('local')(req, res, () => {
+      res.redirect('/secret')
+    })
+  })
+})
+
 app.listen(3000, () => {
   console.log('Now listening on port 3000!!!')
 })
