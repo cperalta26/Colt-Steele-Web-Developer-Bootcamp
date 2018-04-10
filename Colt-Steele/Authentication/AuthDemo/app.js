@@ -52,6 +52,12 @@ app.post('/register', (req, res) => {
   })
 })
 
+//Login Routes
+/* render login form */
+app.get('/login', (req, res) => {
+  res.render('login')
+})
+
 app.listen(3000, () => {
   console.log('Now listening on port 3000!!!')
 })
