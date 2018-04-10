@@ -10,6 +10,7 @@ const User = require('./models/user')
 mongoose.connect('mongodb://localhost/auth_demo_app')
 
 app.set('view engine', 'ejs')
+app.use(bodyParser.urlencoded({extended: true}))
 app.use(passport.initialize())
 app.use(passport.session())
 app.use(require('express-session')({
@@ -21,12 +22,21 @@ app.use(require('express-session')({
 passport.serializeUser(User.serializeUser())
 passport.deserializeUser(User.deserializeUser())
 
+//=====================
+//ROUTES
+//=====================
 app.get('/', (req, res) => {
   res.render('home')
 })
 
 app.get('/secret', (req, res) => {
   res.render('secret')
+})
+
+//Auth Routes
+/* show sign up form */
+app.get('/register', (req, res) => {
+  res.render('register')
 })
 
 app.listen(3000, () => {
