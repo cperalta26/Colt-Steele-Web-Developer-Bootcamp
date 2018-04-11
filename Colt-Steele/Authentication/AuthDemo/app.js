@@ -11,13 +11,15 @@ mongoose.connect('mongodb://localhost/auth_demo_app')
 
 app.set('view engine', 'ejs')
 app.use(bodyParser.urlencoded({extended: true}))
-app.use(passport.initialize())
-app.use(passport.session())
+
 app.use(require('express-session')({
   secret: "You can't see me...I'm a flower",
   resave: false,
   saveUninitialized: false
 }))
+
+app.use(passport.initialize())
+app.use(passport.session())
 
 passport.use(new LocalStrategy(User.authenticate()))
 passport.serializeUser(User.serializeUser())
@@ -30,7 +32,7 @@ app.get('/', (req, res) => {
   res.render('home')
 })
 
-app.get('/secret', (req, res) => {
+app.get('/secret', isLoggedIn, (req, res) => {
   res.render('secret')
 })
 
@@ -71,6 +73,14 @@ app.get('/logout', (req, res) => {
   req.logout()
   res.redirect('/')
 })
+
+//check if user is logged in
+function isLoggedIn(req, res, next){
+  if (req.isAuthenticated()) {
+    return next()
+  }
+  res.redirect('/login')
+}
 
 app.listen(3000, () => {
   console.log('Now listening on port 3000!!!')
