@@ -66,6 +66,12 @@ app.post('/login', passport.authenticate('local', {
 }), (req, res) => {
 })
 
+/* logout */
+app.get('/logout', (req, res) => {
+  req.logout()
+  res.redirect('/')
+})
+
 app.listen(3000, () => {
   console.log('Now listening on port 3000!!!')
 })
