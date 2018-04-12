@@ -10,7 +10,7 @@ const User = require('./models/user')
 const seedDB = require('./seeds')
 
 seedDB()
-mongoose.connect('mongodb://localhost/yelp_camp_v3')
+mongoose.connect('mongodb://localhost/yelp_camp_v6')
 app.use(bodyParser.urlencoded({extended: true}))
 app.set('view engine', 'ejs')
 app.use(express.static(`${__dirname}/public`))
@@ -141,5 +141,5 @@ app.post('/register', (req, res) => {
 })
 
 app.listen(3000, () => {
-  console.log('The YelpCamp Server Has Started on Version 5!')
+  console.log('The YelpCamp Server Has Started on Version 6!')
 })
