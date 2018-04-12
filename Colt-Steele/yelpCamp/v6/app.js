@@ -118,6 +118,28 @@ app.post('/campgrounds/:id/comments', (req, res) => {
   })
 })
 
+//===========================
+//AUTH ROUTES
+//===========================
+/* show register form */
+app.get('/register', (req, res) => {
+  res.render('register')
+})
+
+/* handle sign up logic */
+app.post('/register', (req, res) => {
+  const newUser = new User({username: req.body.username})
+  User.register(newUser, req.body.password, (err, user) => {
+    if (err) {
+      console.log(`error: ${err}`)
+      return res.render('register')
+    }
+    passport.authenticate('local')(req, res, () => {
+      res.redirect('/campgrounds')
+    })
+  })
+})
+
 app.listen(3000, () => {
   console.log('The YelpCamp Server Has Started on Version 5!')
 })
