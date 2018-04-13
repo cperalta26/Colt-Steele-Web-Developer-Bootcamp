@@ -145,12 +145,18 @@ app.get('/login', (req, res) => {
   res.render('login')
 })
 
-/* hanlde login logic */
+/* handle login logic */
 app.post('/login', passport.authenticate('local',
   {
     successRedirect: '/campgrounds',
     failureRedirect: '/login'
   }), (req, res) => {})
+
+/* handle logout logic*/
+app.get('/logout', (req, res) => {
+  req.logout()
+  res.redirect('/campgrounds')
+})
 
 app.listen(3000, () => {
   console.log('The YelpCamp Server Has Started on Version 6!')
