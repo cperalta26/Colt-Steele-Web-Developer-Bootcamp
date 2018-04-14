@@ -28,6 +28,12 @@ passport.use(new LocalStrategy(User.authenticate()))
 passport.serializeUser(User.serializeUser())
 passport.deserializeUser(User.deserializeUser())
 
+//pass down current user to each route
+app.use((req, res, next) => {
+  res.locals.currentUser = req.user
+  next()
+})
+
 app.get('/', (req, res, next) => {
   res.render('landing')
 })
@@ -39,7 +45,7 @@ app.get('/campgrounds', (req, res, next) => {
     if (err) {
       console.log('This is the error ' + err)
     } else {
-      res.render('campgrounds/index', {allCampgrounds})
+      res.render('campgrounds/index', {allCampgrounds, currentUser: req.user})
     }
   })
 })
