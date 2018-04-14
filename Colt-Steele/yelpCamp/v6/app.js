@@ -45,7 +45,7 @@ app.get('/campgrounds', (req, res, next) => {
     if (err) {
       console.log('This is the error ' + err)
     } else {
-      res.render('campgrounds/index', {allCampgrounds, currentUser: req.user})
+      res.render('campgrounds/index', {allCampgrounds})
     }
   })
 })
