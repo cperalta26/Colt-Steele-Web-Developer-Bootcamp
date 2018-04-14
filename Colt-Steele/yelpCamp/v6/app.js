@@ -43,7 +43,7 @@ app.get('/campgrounds', (req, res, next) => {
   //Get all campground from DB
   Campground.find({}, (err, allCampgrounds) => {
     if (err) {
-      console.log('This is the error ' + err)
+      console.log(`This is the error: ${err}`)
     } else {
       res.render('campgrounds/index', {allCampgrounds})
     }
@@ -60,9 +60,9 @@ app.post('/campgrounds', (req, res, next) => {
   //Create a new campground and save it to DB
   Campground.create(newCampground, (err, newlyCreated) => {
     if (err) {
-      console.log('This is the error ' + err)
+      console.log(`This is the error: ${err}`)
     } else {
-      console.log('Campground was created ' + newlyCreated)
+      console.log(`Campground was created: ${newlyCreated}`)
       res.redirect('/campgrounds')
     }
   })
@@ -79,7 +79,7 @@ app.get('/campgrounds/:id', (req, res, next) => {
   const campId = req.params.id
   Campground.findById(campId).populate('comments').exec( (err, foundCampground) => {
     if (err) {
-      console.log('This is the error ' + err)
+      console.log(`This is the error ${err}`)
     } else {
       //render show template with that campground
       res.render('campgrounds/show', {foundCampground})
