@@ -15,10 +15,14 @@ router.get('/', (req, res, next) => {
 
 //CREATE - add new campground to DB
 router.post('/', isLoggedIn, (req, res, next) => {
-  const name = req.body.name
-  const image = req.body.image
-  const description = req.body.description
-  const newCampground = {name, image, description}
+  const {name} = req.body
+  const {image} = req.body
+  const {description} = req.body
+  const author = {
+    id: req.user._id,
+    username: req.user.username
+  }
+  const newCampground = {name, image, description, author}
 
   //Create a new campground and save it to DB
   Campground.create(newCampground, (err, newlyCreated) => {
