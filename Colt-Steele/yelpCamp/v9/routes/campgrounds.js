@@ -54,6 +54,18 @@ router.get('/:id', (req, res, next) => {
   })
 })
 
+//EDIT CAMPGROUND ROUTE
+router.get('/:id/edit', (req, res) => {
+  Campground.findById(req.params.id, (err, foundCampground) => {
+    if (err) {
+      console.log(`Found the following error: ${err}`)
+      res.redirect('/campgrounds')
+    } else {
+      res.render('campgrounds/edit', {foundCampground})
+    }
+  })
+})
+
 function isLoggedIn(req, res, next){
   if (req.isAuthenticated()){
     return next()
