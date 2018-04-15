@@ -12,7 +12,7 @@ const campgroundRoutes = require('./routes/campgrounds')
 const commentRoutes = require('./routes/comments')
 const indexRoutes = require('./routes/index')
 
-seedDB()
+//seedDB()
 mongoose.connect('mongodb://localhost/yelp_camp_v8')
 app.use(bodyParser.urlencoded({extended: true}))
 app.set('view engine', 'ejs')
