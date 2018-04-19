@@ -44,7 +44,7 @@ router.post('/', isLoggedIn, (req, res) => {
 })
 
 //COMMENT EDIT ROUTE
-router.get('/:comment_id/edit', (req, res) => {
+router.get('/:comment_id/edit', checkCommentOwnership, (req, res) => {
   Comment.findById(req.params.comment_id, (err, comment) => {
     if (err) {
       console.log(`Found the following error when trying to edit a comment: ${err}`)
@@ -56,7 +56,7 @@ router.get('/:comment_id/edit', (req, res) => {
 })
 
 //COMMENT UPDATE ROUTE
-router.put('/:comment_id', (req, res) => {
+router.put('/:comment_id', checkCommentOwnership, (req, res) => {
   Comment.findByIdAndUpdate(req.params.comment_id, req.body.comment, (err, updatedComment) => {
     if (err) {
       res.redirect('back')
@@ -67,7 +67,7 @@ router.put('/:comment_id', (req, res) => {
 })
 
 //COMMENT DESTROY ROUTE
-router.delete('/:comment_id', (req, res) => {
+router.delete('/:comment_id', checkCommentOwnership, (req, res) => {
   Comment.findByIdAndRemove(req.params.comment_id, (err) => {
     if (err) {
       res.redirect('back')
@@ -85,4 +85,25 @@ function isLoggedIn(req, res, next){
   res.redirect('/login')
 }
 
+function checkCommentOwnership(req, res, next) {
+  //is user logged in?
+  if (req.isAuthenticated()) {
+    Comment.findById(req.params.comment_id, (err, foundComment) => {
+      if (err) {
+        console.log(`Found the following error: ${err}`)
+        res.redirect('back')
+      } else {
+        //does user own the comment
+        if (foundComment.author.id.equals(req.user._id)) {
+          next()
+        } else {
+          console.log('You do not have the authorization to edit or delete that comment')
+          res.redirect('back')
+        }
+      }
+    })
+  } else {
+    res.redirect('back')
+  }
+}
 module.exports = router
