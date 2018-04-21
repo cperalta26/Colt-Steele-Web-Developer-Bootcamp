@@ -7,6 +7,7 @@ middlewareObj.isLoggedIn = (req, res, next) => {
   if (req.isAuthenticated()){
     return next()
   }
+  req.flash('error', 'You need to be logged in to do that')
   res.redirect('/login')
 }
 
@@ -16,6 +17,7 @@ middlewareObj.checkCampgroundOwnership = (req, res, next) => {
     Campground.findById(req.params.id, (err, foundCampground) => {
       if (err) {
         console.log(`Found the following error: ${err}`)
+        req.flash('error', 'Campground not found')
         res.redirect('back')
       } else {
         //does user own the campground
@@ -23,11 +25,13 @@ middlewareObj.checkCampgroundOwnership = (req, res, next) => {
           next()
         } else {
           console.log('You cannot edit that campground')
+          req.flash('error', "You don't have permission to do that")
           res.redirect('back')
         }
       }
     })
   } else {
+    req.flash('error', 'You need to be logged in to do that')
     res.redirect('back')
   }
 }
@@ -44,12 +48,13 @@ middlewareObj.checkCommentOwnership = (req, res, next) => {
         if (foundComment.author.id.equals(req.user._id)) {
           next()
         } else {
-          console.log('You do not have the authorization to edit or delete that comment')
+          req.flash('error', "You don't have permission to do that")
           res.redirect('back')
         }
       }
     })
   } else {
+    req.flash('error', 'You need to be logged in to do that')
     res.redirect('back')
   }
 }
